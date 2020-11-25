@@ -1,0 +1,16 @@
+div {
+  padding: 5px;
+}
+.list-item {
+  display: flex;
+}
+
+.list-item-bold {
+  font-weight: bold;
+}
+
+.list-item-light {
+  font-weight: lighter;
+  font-size: smaller;
+  margin-top: 2px;
+}
