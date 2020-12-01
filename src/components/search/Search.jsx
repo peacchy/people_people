@@ -1,14 +1,20 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./Search.css";
 
-export const Search = (props) => {
+export const Search = ({ onChange, placeholder }) => {
   const callOnChange = (event) => {
-    props.onChange(event.target.value);
+    onChange(event.target.value);
   };
 
   return (
     <div>
-      <input placeholder="Search by user name..." onChange={callOnChange} />
+      <input placeholder={placeholder} onChange={callOnChange} />
     </div>
   );
+};
+
+Search.propTypes = {
+  onChange: PropTypes.func,
+  placeholder: PropTypes.string,
 };

@@ -6,46 +6,55 @@ import { Search } from "../../components/search/Search";
 import { UserList } from "../../components/list/UserList";
 
 export const UsersListPage = () => {
-  const [filteredUsers, setFilteredUsers] = useState([]);
+  // const [filteredUsers, setFilteredUsers] = useState([]);
   const [users, setUsers] = useState();
-  const [searchInput, setSearchInput] = useState();
+  const [searchInput, setSearchInput] = useState("");
+
+  const lowSearchInput = searchInput.toLowerCase();
+
+  const usersFilteredByName =
+    users?.filter(
+      (user) =>
+        user.name.toLowerCase().includes(lowSearchInput) ||
+        user.surname.toLowerCase().includes(lowSearchInput)
+    ) || [];
 
   useEffect(() => {
     getData();
   }, []);
 
-  useEffect(() => {
-    if (users) {
-      filterUsers(searchInput);
-    }
-  }, [searchInput]);
+  // useEffect(() => {
+  //   if (users) {
+  //     filterUsers(searchInput);
+  //   }
+  // }, [searchInput]);
 
   const getData = async () => {
     const usersResponse = await getUsers();
 
     setUsers(usersResponse);
-    setFilteredUsers(usersResponse);
+    // setFilteredUsers(usersResponse);
   };
 
-  const filterUsers = (input) => {
-    if (!input) {
-      setFilteredUsers(users);
-    }
+  // const filterUsers = (input) => {
+  //   if (!input) {
+  //     setFilteredUsers(users);
+  //   }
 
-    const searchedUsers = users.filter(
-      (user) =>
-        user.name.toLowerCase().startsWith(input.toLowerCase()) ||
-        user.surname.toLowerCase().startsWith(input.toLowerCase())
-    );
+  //   const searchedUsers = users.filter(
+  //     (user) =>
+  //       user.name.toLowerCase().includes(input.toLowerCase()) ||
+  //       user.surname.toLowerCase().includes(input.toLowerCase())
+  //   );
 
-    setFilteredUsers(searchedUsers);
-  };
+  //   setFilteredUsers(searchedUsers);
+  // };
 
   return (
     <div>
       <Header />
-      <Search onChange={setSearchInput} />
-      <UserList className="user-list" items={filteredUsers} />
+      <Search onChange={setSearchInput} placeholder="Search by user name..." />
+      <UserList className="user-list" items={usersFilteredByName} />
     </div>
   );
 };
