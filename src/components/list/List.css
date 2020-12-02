@@ -5,11 +5,11 @@ div {
   display: flex;
 }
 
-.list-item-bold {
+.list-item--bold {
   font-weight: bold;
 }
 
-.list-item-light {
+.list-item--light {
   font-weight: lighter;
   font-size: smaller;
   margin-top: 2px;

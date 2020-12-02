@@ -3,7 +3,9 @@ import "./UsersListPage.css";
 import { getUsers } from "../../api/httpCall";
 import { Header } from "../../components/header/Header";
 import { Search } from "../../components/search/Search";
-import { UserList } from "../../components/list/UserList";
+import { UserList } from "../../components/user-list/UserList";
+import { renderUser } from "./renderUser";
+import { List } from "../../components/list/List";
 
 export const UsersListPage = () => {
   // const [filteredUsers, setFilteredUsers] = useState([]);
@@ -54,7 +56,12 @@ export const UsersListPage = () => {
     <div>
       <Header />
       <Search onChange={setSearchInput} placeholder="Search by user name..." />
-      <UserList className="user-list" items={usersFilteredByName} />
+      {/* <UserList className="user-list" users={usersFilteredByName} /> */}
+      <List
+        className="user-list"
+        items={usersFilteredByName}
+        onItemRender={renderUser}
+      />
     </div>
   );
 };
